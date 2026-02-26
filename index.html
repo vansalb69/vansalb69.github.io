@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Антикварная лавка 4-6</title>
+    <style>
+        /* Стили без изменений (те же, что и раньше) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background-color: #faf7f2;
+            color: #3e2e1f;
+            line-height: 1.5;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            padding: 20px 40px;
+            background-color: #e8d9cc;
+            border-bottom: 3px solid #b89b80;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            border: 2px dashed #8b6b4d;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff6ed;
+            transition: border 0.2s;
+        }
+
+        .logo-img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .shop-name {
+            font-size: 2.5rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #3e2e1f;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .main-content {
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .message {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            color: #5f4e3c;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .action-btn {
+            background-color: #dcc9b8;
+            border: 2px solid #b89b80;
+            border-radius: 12px;
+            padding: 25px 15px;
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: #3e2e1f;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: inherit;
+        }
+
+        .action-btn:hover {
+            background-color: #cbb5a0;
+            border-color: #8b6b4d;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+            transform: translateY(-3px);
+        }
+
+        .action-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 700px) {
+            .header {
+                flex-direction: column;
+                gap: 20px;
+                padding: 20px;
+            }
+            .shop-name {
+                font-size: 2rem;
+                text-align: center;
+            }
+            .buttons-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 0 20px;
+            }
+            .action-btn {
+                font-size: 1.4rem;
+                padding: 20px 10px;
+            }
+            .message {
+                font-size: 1.2rem;
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <!-- ВАШ ЛОГОТИП: положите файл logo.png в ту же папку -->
+            <img src="logo.png" alt="Антикварная лавка 4-6" class="logo-img">
+        </div>
+        <h1 class="shop-name">Антикварная лавка 4-6</h1>
+    </header>
+
+    <main class="main-content">
+        <div class="message">
+            Добрый день! Сайт находится в разработке. Вы можете связаться с нами следующими способами:
+        </div>
+        <div class="buttons-grid">
+            <button class="action-btn" id="btn-telegram">Телеграм</button>
+            <button class="action-btn" id="btn-call">Звонок</button>
+            <button class="action-btn" id="btn-email">Имейл</button>
+            <button class="action-btn" id="btn-max">MAX</button>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const telegramBtn = document.getElementById('btn-telegram');
+            if (telegramBtn) {
+                telegramBtn.addEventListener('click', function() {
+                    window.location.href = 'tg://resolve?domain=antiquelavka46';
+                    setTimeout(function() {
+                        window.location.href = 'https://t.me/antiquelavka46';
+                    }, 500);
+                });
+            }
+
+            const callBtn = document.getElementById('btn-call');
+            if (callBtn) {
+                callBtn.addEventListener('click', function() {
+                    const phoneNumber = '89312569000';
+                    window.location.href = 'tel:' + phoneNumber;
+                    setTimeout(function() {
+                        if (navigator.clipboard && navigator.clipboard.writeText) {
+                            navigator.clipboard.writeText(phoneNumber).then(() => {
+                                alert('Не удалось открыть приложение для звонков.\nНомер ' + phoneNumber + ' скопирован в буфер обмена.');
+                            }).catch(() => {
+                                alert('Не удалось открыть приложение для звонков.\nПозвоните по номеру: ' + phoneNumber);
+                            });
+                        } else {
+                            alert('Не удалось открыть приложение для звонков.\nПозвоните по номеру: ' + phoneNumber);
+                        }
+                    }, 500);
+                });
+            }
+
+            const emailBtn = document.getElementById('btn-email');
+            if (emailBtn) {
+                emailBtn.addEventListener('click', function() {
+                    const emailAddress = 'antiquelavka46@yandex.ru';
+                    window.location.href = 'mailto:' + emailAddress;
+                    setTimeout(function() {
+                        if (navigator.clipboard && navigator.clipboard.writeText) {
+                            navigator.clipboard.writeText(emailAddress).then(() => {
+                                alert('Не удалось открыть почтовую программу.\nАдрес ' + emailAddress + ' скопирован в буфер обмена.');
+                            }).catch(() => {
+                                alert('Не удалось открыть почтовую программу.\nНапишите нам: ' + emailAddress);
+                            });
+                        } else {
+                            alert('Не удалось открыть почтовую программу.\nНапишите нам: ' + emailAddress);
+                        }
+                    }, 500);
+                });
+            }
+
+            const maxBtn = document.getElementById('btn-max');
+            if (maxBtn) {
+                maxBtn.addEventListener('click', function() {
+                    window.location.href = 'https://max.ru/u/f9LHodD0cOJ4OizB4jHjg3jo3XzMmQoqDj-BsrAO3IGMCz-3Op4qtHBx4lY';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
